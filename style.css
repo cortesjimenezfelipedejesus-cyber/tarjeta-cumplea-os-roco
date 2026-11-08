@@ -1,0 +1,201 @@
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  color: #f1f5ff;
+  font-family: Georgia, serif;
+  /* Cielo de noche azulado */
+  background:
+    radial-gradient(ellipse at 50% 120%, #2f5fc4 0%, rgba(47, 95, 196, 0) 55%),
+    linear-gradient(to bottom, #020617 0%, #0a1a46 55%, #16337a 100%);
+}
+
+/* ---------- Estrellas ---------- */
+#estrellas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.estrella {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: .3;
+  animation: parpadeo var(--dur, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: .25; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.4); }
+}
+
+/* ---------- Contenido central ---------- */
+.centro {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.pista {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 2.5%;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  color: #cfe0ff;
+  animation: pulso 2.4s ease-in-out infinite;
+  transition: opacity .5s;
+  pointer-events: none;
+}
+.pista.oculta { opacity: 0; animation: none; }
+
+@keyframes pulso {
+  0%, 100% { opacity: .5; }
+  50%      { opacity: 1; }
+}
+
+/* ---------- Tarjeta (pergamino) ---------- */
+.tarjeta {
+  --w: min(90vw, 440px, calc((100vh - 90px) / 1.3));
+  --q: calc(var(--w) * .33);          /* ancho de la pluma */
+  position: relative;
+  width: var(--w);
+  height: calc(var(--w) * 1.3);
+}
+
+.hoja {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, .45));
+}
+
+/* Zona donde se escribe el mensaje, dentro del papel */
+.mensaje {
+  position: absolute;
+  left: 28%;
+  top: 17%;
+  width: 59%;
+  z-index: 2;
+  font-family: "Dancing Script", "Segoe Script", "Brush Script MT", cursive;
+  font-weight: 600;
+  font-size: calc(var(--w) * .052);
+  color: #3d2b1f;
+  pointer-events: none;
+}
+
+.linea {
+  display: block;
+  width: fit-content;
+  white-space: nowrap;
+  line-height: 1.8;
+  /* oculta el renglón hasta que la pluma lo escribe */
+  -webkit-clip-path: inset(-25% 100% -25% 0);
+  clip-path: inset(-25% 100% -25% 0);
+}
+
+/* ---------- Pluma ---------- */
+.pluma {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  z-index: 4;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  /* posición de reposo (dentro del tintero); script.js la reemplaza */
+  transform: translate(calc(var(--w) * .715), calc(var(--w) * 1.155));
+}
+
+.pluma-in {
+  position: absolute;
+  display: block;
+  width: var(--q);
+  height: calc(var(--q) * 170 / 130);
+  left: calc(var(--q) * -6 / 130);
+  top: calc(var(--q) * -164 / 130);
+  transform-origin: calc(var(--q) * 6 / 130) calc(var(--q) * 164 / 130);
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .35));
+  animation: espera 2.2s ease-in-out infinite;
+}
+.pluma-in svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.pluma:focus-visible .pluma-in { filter: drop-shadow(0 0 8px #9ec0ff); }
+
+.pluma.escribiendo { cursor: default; }
+.pluma.escribiendo .pluma-in { animation: none; }
+
+@keyframes espera {
+  0%, 100% { transform: rotate(0deg);  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, .35)); }
+  50%      { transform: rotate(-6deg); filter: drop-shadow(0 0 10px rgba(255, 224, 160, .95)); }
+}
+
+/* ==========================================================
+   IMÁGENES DECORATIVAS
+   Tamaño: cambia el 150px (máximo) de width si las quieres
+   más grandes o más pequeñas.
+   ========================================================== */
+.deco {
+  position: absolute;
+  z-index: 1;
+  width: clamp(70px, 14vw, 150px);
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 0 12px rgba(140, 180, 255, .5));
+}
+
+/* Posiciones: ajusta top / bottom / left / right a tu gusto */
+.pos1 { top: 8%;  left: 8%; }
+.pos2 { top: 12%; right: 9%; }
+.pos3 { bottom: 10%; left: 12%; }
+.pos4 { bottom: 12%; right: 10%; }
+
+/* Ejemplo de una posición extra (para una quinta imagen):
+.pos5 { top: 45%; left: 4%; }
+*/
+
+/* Animaciones de cada imagen */
+.flota { animation: flotar 5s ease-in-out infinite; }
+.late  { animation: latir 1.6s ease-in-out infinite; }
+.gira  { animation: girar 14s linear infinite; }
+.mece  { animation: mecer 4s ease-in-out infinite; transform-origin: top center; }
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-26px); }
+}
+@keyframes latir {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }
+}
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+@keyframes mecer {
+  0%, 100% { transform: rotate(-9deg); }
+  50%      { transform: rotate(9deg); }
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .estrella { opacity: .8; }
+}

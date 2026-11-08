@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feliz cumpleaños</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Estrellas (se generan con script.js) -->
+  <div id="estrellas" aria-hidden="true"></div>
+
+  <!-- ==========================================================
+       AQUÍ AGREGAS TUS IMÁGENES
+       - Cambia el nombre en src="..." por el de tu archivo.
+       - Animación: flota (sube y baja) | late (como corazón)
+                    gira (da vueltas)   | mece (se balancea)
+       - Posición:  pos1 (arriba izq.)  | pos2 (arriba der.)
+                    pos3 (abajo izq.)   | pos4 (abajo der.)
+       - Para más imágenes, copia una línea y crea su posición
+         (pos5, pos6...) en style.css.
+       ========================================================== -->
+  <img src="maki-removebg-preview.png" class="deco flota  pos1" alt="">
+  <img src="maki2-removebg-preview.png" class="deco late   pos2" alt="">
+  <img src="Jinjang.png" class="deco gira   pos3" alt="">
+  <img src="Globos.png" class="deco mece   pos4" alt="">
+  <img src="pastel.png" class="deco mece   pos4" alt="">
+  <!-- ========================================================== -->
+
+  <main class="centro">
+    <div class="tarjeta" id="tarjeta">
+
+    <svg class="hoja" viewBox="0 0 400 520" aria-hidden="true">
+      <defs>
+        <linearGradient id="gHoja" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0"   stop-color="#f3d3a0"/>
+          <stop offset=".12" stop-color="#fdebc8"/>
+          <stop offset=".88" stop-color="#fdebc8"/>
+          <stop offset="1"   stop-color="#f1d09b"/>
+        </linearGradient>
+        <linearGradient id="gTubo" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0"   stop-color="#f7cf9a"/>
+          <stop offset=".55" stop-color="#eeb676"/>
+          <stop offset="1"   stop-color="#d9965a"/>
+        </linearGradient>
+        <linearGradient id="gTinta" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7a4a32"/>
+          <stop offset="1" stop-color="#4a2a1c"/>
+        </linearGradient>
+      </defs>
+
+      <!-- papel -->
+      <path d="M74 28 L336 28 C362 28 372 42 368 64 C364 80 372 92 368 110 C362 152 372 192 366 234 C360 274 372 320 366 362 C362 398 372 420 364 446 C334 466 298 436 252 456 C208 476 168 470 130 452 C110 443 100 430 96 414 C90 380 100 346 94 312 C88 276 98 246 92 212 C86 176 98 146 92 112 C88 88 96 72 86 56 Z"
+            fill="url(#gHoja)" stroke="#6e3a1c" stroke-width="3" stroke-linejoin="round"/>
+      <!-- brillo superior -->
+      <path d="M104 40 L300 40" stroke="#fff" stroke-opacity=".85" stroke-width="4.5" stroke-linecap="round"/>
+      <circle cx="330" cy="40" r="3.2" fill="#fff"/>
+      <!-- sombra en el doblez derecho -->
+      <path d="M352 70 C358 130 350 190 356 250 C362 310 352 360 358 420" fill="none" stroke="#e8c58f" stroke-width="7" stroke-linecap="round" opacity=".6"/>
+
+      <!-- rollo de arriba (hoja que se enrolla hacia atrás) -->
+      <path d="M60 30 L110 30 L110 82 L60 82 Z" fill="url(#gTubo)" stroke="#6e3a1c" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M84 30 L112 28 L112 84 L84 82" fill="none"/>
+      <ellipse cx="60" cy="56" rx="19" ry="27" fill="#c9783a" stroke="#6e3a1c" stroke-width="3"/>
+      <path d="M60 36 C46 40 42 70 60 76 C54 66 54 48 60 36 Z" fill="#f0b97a" stroke="#6e3a1c" stroke-width="2"/>
+      <path d="M100 36 L100 76" stroke="#fff" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- rollo de abajo (hoja que se enrolla hacia arriba) -->
+      <path d="M96 414 C94 432 108 446 130 452 L168 452 C158 438 160 420 142 414 C126 410 108 410 96 414 Z" fill="url(#gTubo)" stroke="#6e3a1c" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="124" cy="428" rx="13" ry="14" fill="#c9783a" stroke="#6e3a1c" stroke-width="2.6"/>
+      <path d="M124 418 C116 420 115 436 124 438 C121 432 121 424 124 418 Z" fill="#f0b97a" stroke="#6e3a1c" stroke-width="1.6"/>
+
+      <!-- tintero -->
+      <path d="M262 470 L318 470 L326 506 C326 512 320 516 312 516 L268 516 C260 516 254 512 254 506 Z" fill="url(#gTinta)" stroke="#2e1a12" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="290" cy="470" rx="30" ry="9" fill="#5a3422" stroke="#2e1a12" stroke-width="3"/>
+      <ellipse cx="290" cy="470" rx="21" ry="5.5" fill="#17101f"/>
+      <path d="M276 469 C282 467 292 467 300 469" fill="none" stroke="#6b5a8a" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+      <path d="M268 482 L270 506" stroke="#fff" stroke-opacity=".18" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+
+      <!-- Aquí se escribe el mensaje (se llena desde script.js) -->
+      <div class="mensaje" id="mensaje" aria-live="polite"></div>
+
+      <!-- Pluma: al tocarla escribe el mensaje -->
+      <div class="pluma" id="pluma" role="button" tabindex="0" aria-label="Tocar la pluma para escribir el mensaje">
+        <span class="pluma-in">
+          <svg viewBox="0 0 130 170" aria-hidden="true">
+              <path d="M32 132 C14 84 62 26 124 6 C130 66 104 126 58 148 C48 144 38 140 32 132 Z"
+                    fill="#cdae8c" stroke="#7a5238" stroke-width="2.6" stroke-linejoin="round"/>
+              <path d="M56 84 L45 86 L54 92 M82 54 L71 56 L80 62 M102 36 L93 38 L99 45" fill="none" stroke="#7a5238" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M44 126 L64 116 M54 114 L78 98 M66 101 L92 80 M80 86 L106 62 M94 70 L116 44 M104 52 L122 26 M48 138 L74 124"
+                    stroke="#8b6b4a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+              <path d="M6 164 C38 128 82 66 124 6" fill="none" stroke="#6b4a30" stroke-width="3.4" stroke-linecap="round"/>
+              <path d="M6 164 L16 150" stroke="#2b1a14" stroke-width="3.6" stroke-linecap="round"/>
+            </svg>
+        </span>
+      </div>
+    </div>
+
+    <p class="pista" id="pista">Toca la pluma</p>
+  </main>
+
+  <audio id="musica" src="videoplayback.m4a" loop preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
